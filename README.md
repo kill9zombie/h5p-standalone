@@ -244,12 +244,24 @@ A summary of the previous state restoration process:
 3) Process the previous state `data` as follows:
     - where `data[0].state` equals `RESET`, any previous state will be deleted
     - else, parse `data[0].state` string and pass it to the H5P player instance.
-    
+
  `ajax.contentUserDataUrl` may include (contentId,dataType,subContentId) placeholders that will be replaced with respective data _automagically_. Placeholders are prefixed with `:`
  Placeholders are effective when you need to query only current content user data.
- 
+
  `ajax.contentUserDataUrl` example:
  `/api/users/123/h5p/:contentId?data_type=:dataType&subContentId=:subContentId`
+
+For example, a Course Presentation H5P module may send a state to the server as:
+
+`data="{\"progress\":8,\"answers\":..."`
+
+To take a user back to slide 8, contentUserData should be an object in the form of:
+
+`{0: {state: '{"progress":8,"answers":...}'}}`
+
+Note that the 'state' value is a raw JSON string or the string 'RESET' as above.
+
+The state can be checked in the browser console with: `H5PIntegration.contents["cid-1234"].contentUserData` .. where "cid-1234" is the H5P content ID.
 
 ### Caveats while adding embed code
 - This library includes an H5P resizer by default in `main.bundle.js` at the moment. But, to allow the iframe width to resize promptly, add CSS style setting the width to 100% i.e. `style="width:100%;"`
