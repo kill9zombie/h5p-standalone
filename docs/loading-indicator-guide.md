@@ -24,7 +24,7 @@ our custom JavaScript file in:
 mkdir assets/h5p-standalone/custom-js
 ```
 
-Now we can create the `assets/h5p-standalone/custom-js/finished-loading`
+Now we can create the `assets/h5p-standalone/custom-js/finished-loading.js`
 file, use your favourite text editor and add this:
 
 ```javascript
